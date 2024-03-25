@@ -13,11 +13,14 @@ const userInitialState: User = {
   givenName: '',
   familyName: '',
   nickName: '',
-  surName: '',
   emails: [{ label: '', address: '' }],
   phones: [],
 }
 
+/**
+ * Main page and component, contains the main logic for crud and organizes the other components
+ * @returns component relates UI for the book addresses
+ */
 export const AddressBook: FC = () => {
   const [isLoading, setIsLoading] = useState(false)
   const [openModal, setOpenModal] = useState(false)

@@ -1,9 +1,14 @@
 import { User } from '../utils/User'
 
+const baseUrl = 'http://localhost:3000/users'
+
 export const getUsers = async () => {
   try {
-    const response = await fetch('http://localhost:3000/users', {
+    const response = await fetch(baseUrl, {
       method: 'GET',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+      },
     })
     return await response.json()
   } catch (error) {
@@ -13,7 +18,7 @@ export const getUsers = async () => {
 
 export const saveUser = async (user: User) => {
   try {
-    return fetch('http://localhost:3000/users', {
+    return fetch(baseUrl, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
@@ -27,7 +32,7 @@ export const saveUser = async (user: User) => {
 
 export const deleteUser = async (user: User) => {
   try {
-    return fetch('http://localhost:3000/users/delete', {
+    return fetch(baseUrl, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',

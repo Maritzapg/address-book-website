@@ -10,8 +10,15 @@ type Props = {
   user: User
 }
 
+/**
+ * Component that contains the logic needed to edit or create an user depending on the incoming information in the user object,
+ * also, sends back the events to close the modal or to save the user
+ * @returns Modal to edit or create an user
+ */
 export const ModalForm: FC<Props> = ({ onClose, user, onSaveUser }) => {
   const [userData, setUserData] = useState<User>(user)
+  const [emailMessage, setEmailMessage] = useState('')
+  const [errorMessage, setErrorMessage] = useState('')
 
   useEffect(() => {
     if (user) setUserData(user)
@@ -37,7 +44,14 @@ export const ModalForm: FC<Props> = ({ onClose, user, onSaveUser }) => {
       const oldUser = { ...userData }
       if (oldUser && oldUser.emails) {
         if (field === 'label') oldUser.emails[index].label = value
-        else oldUser.emails[index].address = value
+        else {
+          const isRepeated = oldUser.emails.find(e => e.address === value)
+          if (isRepeated) setEmailMessage(`Email address can't be repeated`)
+          else {
+            setEmailMessage('')
+            oldUser.emails[index].address = value
+          }
+        }
 
         let newState = { ...userData, emails: oldUser.emails }
         setUserData(newState)
@@ -71,8 +85,16 @@ export const ModalForm: FC<Props> = ({ onClose, user, onSaveUser }) => {
     setUserData({ ...userData, [e.target.name]: e.target.value })
   }
 
+  const isFormValid = (): boolean => {
+    return (
+      userData.givenName !== '' && userData.familyName !== '' && userData.nickName !== '' && userData.emails.length >= 1
+    )
+  }
+
   const onSave = () => {
-    onSaveUser(userData)
+    const isValid = isFormValid()
+    if (isValid) onSaveUser(userData)
+    else setErrorMessage('Form is not valid, there must be at least one email or some fields are empty.')
   }
 
   return (
@@ -138,6 +160,11 @@ export const ModalForm: FC<Props> = ({ onClose, user, onSaveUser }) => {
                   onChangeValue={(address, index) => onChangeLabelList(address, 'address', 'email', index)}
                   onAddNew={() => appendToTheList('email')}
                 />
+                {emailMessage !== '' && (
+                  <div className='alert alert-warning' style={{ marginTop: '10px', padding: '7px' }}>
+                    {emailMessage}
+                  </div>
+                )}
               </div>
               <div className='mb-3'>
                 {userData.phones.length > 0 && (
@@ -155,6 +182,11 @@ export const ModalForm: FC<Props> = ({ onClose, user, onSaveUser }) => {
                 />
               </div>
             </form>
+            {errorMessage !== '' && (
+              <div className='alert alert-danger' style={{ marginTop: '10px', padding: '7px' }}>
+                {errorMessage}
+              </div>
+            )}
           </div>
           <div className='modal-footer'>
             <button type='button' className='btn btn-secondary' data-bs-dismiss='modal' onClick={onClose}>

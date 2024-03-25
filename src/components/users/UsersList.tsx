@@ -9,6 +9,10 @@ type Props = {
   deleteUser: (user: User) => void
 }
 
+/**
+ * Lists the users and sends back the events when editing or deleting one of them with the user as a param
+ * @returns Grid the list of users
+ */
 export const UsersList: FC<Props> = ({ users, editUser, deleteUser }) => {
   const renderPhones = (phones: Phone[]) => {
     if (phones.length > 0) {

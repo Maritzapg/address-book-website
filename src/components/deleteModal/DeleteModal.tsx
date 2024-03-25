@@ -5,6 +5,10 @@ type Props = {
   onDelete: () => void
 }
 
+/**
+ * Component that sends back the events to close it or confirm the deletion of the user
+ * @returns Confirmation modal before deleting a user
+ */
 export const DeleteModal: FC<Props> = ({ onClose, onDelete }) => {
   return (
     <div className='modal modal-dialog-centered' tabIndex={-1}>

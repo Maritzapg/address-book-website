@@ -3,7 +3,6 @@ export interface User {
   givenName: string
   familyName: string
   nickName: string
-  surName: string
   emails: Email[]
   phones: Phone[]
 }

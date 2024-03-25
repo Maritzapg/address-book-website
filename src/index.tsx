@@ -4,6 +4,8 @@ import { AddressBook } from './AddressBook'
 import './index.css'
 import reportWebVitals from './reportWebVitals'
 
+
+// Creates a React root for displaying content inside a browser DOM element.
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 root.render(
   <React.StrictMode>

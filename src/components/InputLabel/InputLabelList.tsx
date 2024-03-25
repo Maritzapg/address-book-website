@@ -11,6 +11,10 @@ type Props = {
   onAddNew: () => void
 }
 
+/**
+ * Contains the list of labels and values related to phones and emails, this way allows to reuse code
+ * @returns A list of input label with an option to delete from the list
+ */
 export const InputLabelList: FC<Props> = ({ type, records, onDelete, onChangeLabel, onChangeValue, onAddNew }) => {
   const renderList = () => {
     return records.map((record, index) => {
