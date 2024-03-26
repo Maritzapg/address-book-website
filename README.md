@@ -4,8 +4,7 @@ Basic address book application
 
 ## Summary
 
-This project was created with [Create React App](https://github.com/facebook/create-react-app).
-and styled with [Boottrap](https://getbootstrap.com/)
+This project was created with [Create React App](https://github.com/facebook/create-react-app) and styled with [Bootstrap](https://getbootstrap.com/)
 
 ## Running Locally
 
