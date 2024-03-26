@@ -56,7 +56,7 @@ export const AddressBook: FC = () => {
     <>
       <div className='container'>
         <Header />
-        <div className='spacing d-flex flex-row-reverse'>
+        <div className='spacing d-grid gap-2 d-md-flex justify-content-md-end'>
           <Button onClick={() => setOpenModal(true)} text='Create' />
         </div>
         <div className='spacing'>

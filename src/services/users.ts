@@ -1,6 +1,6 @@
 import { User } from '../utils/User'
 
-const baseUrl = 'http://localhost:3000/users'
+const baseUrl = 'http://localhost:3001/users'
 
 export const getUsers = async () => {
   try {

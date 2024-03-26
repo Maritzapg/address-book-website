@@ -189,12 +189,14 @@ export const ModalForm: FC<Props> = ({ onClose, user, onSaveUser }) => {
             )}
           </div>
           <div className='modal-footer'>
-            <button type='button' className='btn btn-secondary' data-bs-dismiss='modal' onClick={onClose}>
-              Close
-            </button>
-            <button type='button' className='btn btn-primary' onClick={() => onSave()}>
-              Save changes
-            </button>
+            <div className='d-grid gap-2 d-md-flex justify-content-md-end' style={{ width: '100%' }}>
+              <button type='button' className='btn btn-secondary' data-bs-dismiss='modal' onClick={onClose}>
+                Close
+              </button>
+              <button type='button' className='btn btn-primary' onClick={() => onSave()}>
+                Save changes
+              </button>
+            </div>
           </div>
         </div>
       </div>
